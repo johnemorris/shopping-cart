@@ -17,15 +17,12 @@ public class CheckoutApplication {
         // - Only Apple and Orange are applicable (case-sensitive)ple
         //
         String[] items = getUserInput();
-        int totalCost = 0;
         if (items.length != 0) {
             // Making assumption that items entered are only Apple or Orange. Otherwise, I would validate here
             cart.setItems(items);
             cart.processCart();
-            totalCost = cart.getTotalSale();
          }
-
-        System.out.println("Total cost is: " + totalCost + "p");
+        System.out.println("Total cost is: " + cart.getTotalSale());
     }
 
 

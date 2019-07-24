@@ -7,13 +7,11 @@ public class ShoppingCart {
 
     private final double COST_OF_APPLE = 60;
     private final double COST_OF_ORANGE = 25;
+    private final String POUND = "\u00A3";
 
     private int totalSale;
-
     private String[] items;
 
-    public ShoppingCart() {
-    }
 
     public void processCart(){
 
@@ -41,7 +39,9 @@ public class ShoppingCart {
         calculateCost(quantities);
     }
 
-
+    /*
+    Cost returned in British pence
+     */
     private void calculateCost(Map<String,Integer> quantities) {
         totalSale = 0;
         if (quantities.containsKey("Apple")){
@@ -58,7 +58,13 @@ public class ShoppingCart {
     }
 
 
-    public int getTotalSale() {
-        return totalSale;
+    public String getTotalSale() {
+        // Problem is in British Pounds so need to convert
+        int britishPounds = totalSale/100;
+        int britishPence = totalSale%100;
+        if (britishPounds > 0) {
+            return POUND + britishPounds + "."+ String.format("%02d", britishPence);
+        }
+        return britishPence+"p";
     }
 }
