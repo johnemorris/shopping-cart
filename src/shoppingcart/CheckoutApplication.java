@@ -7,6 +7,9 @@ import java.util.Scanner;
  * @author John Morris
  */
 public class CheckoutApplication {
+    private final static double BUY_ONE_GET_ONE = 0.5;
+    private final static double THREE_FOR_TWO = 0.6;
+
 
     public static void main(String[] args) {
 
@@ -20,6 +23,10 @@ public class CheckoutApplication {
         if (items.length != 0) {
             // Making assumption that items entered are only Apple or Orange. Otherwise, I would validate here
             cart.setItems(items);
+            // Apply any sales that are currently available
+            cart.setAppleSaleAdjustment(BUY_ONE_GET_ONE);
+            cart.setOrangeSalesAdjustment(THREE_FOR_TWO);
+            // Determine the total cost
             cart.processCart();
          }
         System.out.println("Total cost is: " + cart.getTotalSale());

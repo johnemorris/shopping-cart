@@ -11,6 +11,8 @@ public class ShoppingCart {
 
     private int totalSale;
     private String[] items;
+    private double appleSaleAdjustment = 1.0;
+    private double orangeSalesAdjustment = 1.0;
 
 
     public void processCart(){
@@ -45,10 +47,10 @@ public class ShoppingCart {
     private void calculateCost(Map<String,Integer> quantities) {
         totalSale = 0;
         if (quantities.containsKey("Apple")){
-            totalSale += quantities.get("Apple") * COST_OF_APPLE;
+            totalSale += Math.ceil(quantities.get("Apple") * appleSaleAdjustment) * COST_OF_APPLE;
         }
         if (quantities.containsKey("Orange")){
-            totalSale += quantities.get("Orange") * COST_OF_ORANGE;
+            totalSale += Math.ceil(quantities.get("Orange") * orangeSalesAdjustment) * COST_OF_ORANGE;
         }
     }
 
@@ -66,5 +68,13 @@ public class ShoppingCart {
             return POUND + britishPounds + "."+ String.format("%02d", britishPence);
         }
         return britishPence+"p";
+    }
+
+    public void setAppleSaleAdjustment(double appleSaleAdjustment) {
+        this.appleSaleAdjustment = appleSaleAdjustment;
+    }
+
+    public void setOrangeSalesAdjustment(double orangeSalesAdjustment) {
+        this.orangeSalesAdjustment = orangeSalesAdjustment;
     }
 }
